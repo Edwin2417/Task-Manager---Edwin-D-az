@@ -1,0 +1,6 @@
+<odoo>
+    <menuitem id="menu_task_manager_root" name="Gestor de Tareas" sequence="10"/>
+
+    <menuitem id="menu_task_manager_tasks" name="Tareas"
+              parent="menu_task_manager_root" action="task_manager.action_task"/>
+</odoo>

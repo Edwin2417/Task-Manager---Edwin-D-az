@@ -1,0 +1,5 @@
+<odoo>
+    <record id="group_task_manager" model="res.groups">
+        <field name="name">Gestor de Tareas</field>
+    </record>
+</odoo>

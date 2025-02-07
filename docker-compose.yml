@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"  # Usar puerto estándar
+    restart: always
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data  # Usar carpeta local en lugar de volumen persistente
+
+  odoo:
+    image: odoo:17
+    platform: linux/amd64
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"  # XML-RPC (Odoo frontend)
+      - "8072:8072"  # Longpolling (Chat, notificaciones en tiempo real)
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+    user: root
+    volumes:
+      - ./extra-addons:/mnt/extra-addons
+      - ./etc:/etc/odoo
+    command: -- --config=/etc/odoo/odoo.conf  # Usar archivo de configuración estándar
+    restart: always

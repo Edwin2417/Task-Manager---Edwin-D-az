@@ -1,0 +1,46 @@
+<odoo>
+    <record id="view_task_tree" model="ir.ui.view">
+        <field name="name">task.task.tree</field>
+        <field name="model">task.task</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="assigned_to" />
+                <field name="deadline" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_task_form" model="ir.ui.view">
+        <field name="name">task.task.form</field>
+        <field name="model">task.task</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group col="2">
+                        <group>
+                            <field name="name" />
+                            <field name="assigned_to" />
+                            <field name="deadline" />
+                        </group>
+                        <group>
+                            <field name="description" />
+                            <field name="state"
+                                readonly="state == 'completada'"
+                            />
+                            <button name="mark_as_completed" type="object"
+                                string="Marcar como Completada"
+                                class="oe_highlight"
+                                invisible="state == 'completada'" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_task" model="ir.actions.act_window">
+        <field name="name">Tareas</field>
+        <field name="res_model">task.task</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

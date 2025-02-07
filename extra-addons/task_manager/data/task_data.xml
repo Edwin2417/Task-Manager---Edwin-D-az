@@ -1,0 +1,7 @@
+<odoo>
+    <record id="task_sample_1" model="task.task">
+        <field name="name">Revisar reportes</field>
+        <field name="description">Verificar los reportes financieros</field>
+        <field name="state">pendiente</field>
+    </record>
+</odoo>
